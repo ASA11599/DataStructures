@@ -7,7 +7,7 @@ class Node:
 	def __eq__(self,other):
 		if other == None:
 			return False
-		return self.data == other.data
+		return self.data == other
 
 class Linked_list:
 	def __init__(self):
@@ -41,6 +41,16 @@ class Linked_list:
 		self.length += 1
 		self.end.nxt = Node(obj)
 		self.end = self.end.nxt
+	def delete(self,obj):
+		if self.start.data == obj:
+			self.start = self.start.nxt
+		current = self.start
+		while current.nxt != obj:
+			current = current.nxt
+		current.nxt = current.nxt.nxt
+		self.length += 1
+
+		
 
 
 if __name__ == "__main__":
@@ -52,6 +62,7 @@ if __name__ == "__main__":
 	ll.append(4)
 	ll.append(5)
 
+	print("first linked list")
 	print(ll)
 	print()
 
@@ -61,7 +72,34 @@ if __name__ == "__main__":
 	ll2.append(4)
 	ll2.append(5)
 
+	print("second linked list")
 	print(ll2)
 	print()
 
-	print(ll == ll2)
+	print("first == second is " + str(ll == ll2))
+	print()
+
+	ll.delete(3)
+	print("after calling first.delete(3)")
+	print(ll)
+	print()
+	print("first == second is " + str(ll == ll2))
+	print()
+
+	ll3 = Linked_list()
+	ll3.append("I am a string")
+	ll3.append(True)
+	ll3.append(948737)
+	ll3.append(["another String",42,False])
+
+	print("third linked list contains different types of objects")
+	print(ll3)
+	print()
+
+	ll4 = Linked_list()
+	ll4.append(ll)
+	ll4.append(ll2)
+	ll4.append(ll3)
+
+	print("fourth linked list contains other linked lists")
+	print(ll4)
