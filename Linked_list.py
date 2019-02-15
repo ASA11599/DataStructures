@@ -49,8 +49,16 @@ class Linked_list:
 			current = current.nxt
 		current.nxt = current.nxt.nxt
 		self.length += 1
+	def get(self,index):
+		current_index = 0
+		current = self.start
+		while current_index <= self.length:
+			if current_index == index:
+				return current
+			current_index += 1
+			current = current.nxt
 
-		
+
 
 
 if __name__ == "__main__":
@@ -103,3 +111,8 @@ if __name__ == "__main__":
 
 	print("fourth linked list contains other linked lists")
 	print(ll4)
+	print()
+
+	print("get the element at each index of the third linked list and print it")
+	for index in range(ll3.length):
+		print(ll3.get(index))
