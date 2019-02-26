@@ -60,7 +60,6 @@ class Linked_list:
 
 
 
-
 if __name__ == "__main__":
 
 	ll = Linked_list()
