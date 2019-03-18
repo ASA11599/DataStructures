@@ -45,7 +45,7 @@ class Linked_list:
 		if self.start.data == obj:
 			self.start = self.start.nxt
 		current = self.start
-		while current.nxt != obj:
+		while current.nxt.data != obj:
 			current = current.nxt
 		current.nxt = current.nxt.nxt
 		self.length += 1
