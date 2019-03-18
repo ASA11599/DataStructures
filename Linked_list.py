@@ -1,19 +1,24 @@
 class Node:
+
 	def __init__(self,data,nxt=None):
 		self.data = data
 		self.nxt = nxt
+
 	def __repr__(self):
 		return str(self.data)
+
 	def __eq__(self,other):
 		if other == None:
 			return False
 		return self.data == other
 
 class Linked_list:
+
 	def __init__(self):
 		self.start = None
 		self.end = self.start
 		self.length = 0
+
 	def __repr__(self):
 		s = "LL(" + str(self.start)
 		current = self.start
@@ -21,6 +26,7 @@ class Linked_list:
 			s += "," + str(current.nxt)
 			current = current.nxt
 		return s + ")"
+
 	def __eq__(self,other):
 		current_this = self.start
 		current_other = other.start
@@ -30,6 +36,7 @@ class Linked_list:
 			current_this = current_this.nxt
 			current_other = current_other.nxt
 		return True
+
 	def append(self,obj):
 		if self.start == None and self.end == None:
 			self.start = Node(obj)
@@ -41,14 +48,16 @@ class Linked_list:
 		self.length += 1
 		self.end.nxt = Node(obj)
 		self.end = self.end.nxt
+
 	def delete(self,obj):
 		if self.start.data == obj:
 			self.start = self.start.nxt
 		current = self.start
-		while current.nxt.data != obj:
+		while current.nxt != obj:
 			current = current.nxt
 		current.nxt = current.nxt.nxt
 		self.length += 1
+
 	def get(self,index):
 		current_index = 0
 		current = self.start
