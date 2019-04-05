@@ -1,18 +1,21 @@
-class Node:
-
-	def __init__(self,data,nxt=None):
-		self.data = data
-		self.nxt = nxt
-
-	def __repr__(self):
-		return str(self.data)
-
-	def __eq__(self,other):
-		if other == None:
-			return False
-		return self.data == other
-
 class Linked_list:
+
+	class Iterator:
+		pass
+
+	class Node:
+
+		def __init__(self,data,nxt=None):
+			self.data = data
+			self.nxt = nxt
+
+		def __repr__(self):
+			return str(self.data)
+
+		def __eq__(self,other):
+			if other == None:
+				return False
+			return self.data == other
 
 	def __init__(self):
 		self.start = None
@@ -39,14 +42,14 @@ class Linked_list:
 
 	def append(self,obj):
 		if self.start == None and self.end == None:
-			self.start = Node(obj)
+			self.start = Linked_list.Node(obj)
 			self.end = self.start
 			self.length += 1
 			return
 		while self.end.nxt != None:
 			self.end = self.end.nxt
 		self.length += 1
-		self.end.nxt = Node(obj)
+		self.end.nxt = Linked_list.Node(obj)
 		self.end = self.end.nxt
 
 	def delete(self,obj):
