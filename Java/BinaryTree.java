@@ -114,22 +114,4 @@ public class BinaryTree<E extends Comparable<E>> {
 	}
 
 
-	public static void main(String[] args) {
-		BinaryTree<Integer> bt = new BinaryTree<Integer>();
-		bt.add(new Integer(5));
-		bt.add(new Integer(2));
-		bt.add(new Integer(4));
-		bt.add(new Integer(1));
-		bt.add(new Integer(8));
-		bt.add(new Integer(9));
-		bt.add(new Integer(7));
-		System.out.println("in order: ");
-		bt.printInOrder();
-		System.out.println("pre order: ");
-		bt.printPreOrder();
-		System.out.println("post order: ");
-		bt.printPostOrder();
-	}
-
-
 }
