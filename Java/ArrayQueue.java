@@ -41,23 +41,5 @@ public class ArrayQueue<E> implements Queue<E> {
 		this.size++;
 	}
 
-	public static void main(String[] args) {
-		ArrayQueue<Integer> aq = new ArrayQueue<Integer>();
-		for (int i = 0 ; i < 25 ; i++) {
-			aq.enqueue(new Integer(i+1));
-		}
-		for (int i = 0 ; i < 16 ; i++) {
-			aq.dequeue();
-		}
-		for (int i = 26 ; i < 32 ; i++) {
-			aq.enqueue(new Integer(i));
-		}
-		aq.dequeue();
-		aq.enqueue(99);
-		while (!aq.isEmpty()) {
-			System.out.println(aq.dequeue());
-		}
-		
-	}
 
 }
