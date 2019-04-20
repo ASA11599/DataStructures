@@ -15,7 +15,7 @@ class Linked_list:
 		def __eq__(self,other):
 			if other == None:
 				return False
-			return self.data == other
+			return self.data == other.data
 
 	def __init__(self):
 		self.start = None
