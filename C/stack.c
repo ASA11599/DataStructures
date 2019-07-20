@@ -4,12 +4,12 @@
 
 typedef struct Node {
     void * value;
-    struct Node * under;
+    Node * under;
 } Node;
 
 typedef struct Stack {
     int size;
-    struct Node * top;
+    Node * top;
 } Stack;
 
 Node * create_node(void * val_ptr)
