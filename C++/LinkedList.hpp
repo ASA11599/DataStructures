@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-#include <iostream>
-
->>>>>>> d07e2ace636f099f3990c71b52f5cdc085104532
 template <typename T>
 class LinkedList
 {
