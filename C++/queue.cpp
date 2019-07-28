@@ -1,6 +1,5 @@
 #include <iostream>
-
-class Queue {};
+#include "queue.hpp"
 
 int main(void)
 {

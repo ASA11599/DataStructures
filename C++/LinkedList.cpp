@@ -1,6 +1,5 @@
 #include <iostream>
-
-class Linked_list {};
+#include "LinkedList.hpp"
 
 int main(void)
 {

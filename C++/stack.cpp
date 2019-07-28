@@ -1,6 +1,5 @@
 #include <iostream>
-
-class Stack {};
+#include "stack.hpp"
 
 int main(void)
 {
