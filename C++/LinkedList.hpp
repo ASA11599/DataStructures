@@ -8,11 +8,11 @@ class LinkedList
         class Node
         {
             public:
-                E * value;
+                E value;
                 Node<E> * prev;
                 Node<E> * next;
                 // Constructor
-                Node(const E * value) {
+                Node(const E value) {
                     this->value = value;
                     this->prev = nullptr;
                     this->next = nullptr;
@@ -39,13 +39,13 @@ class LinkedList
 
         // Instance methods
         bool isEmpty();
-        int size();
-        void addLast(T * item);
-        void addFirst(T * item);
+        int getSize();
+        void addLast(T item);
+        void addFirst(T item);
         void add(T* item, int index);
-        T * getLast();
-        T * getFirst();
-        T * get(int index);
+        T getLast();
+        T getFirst();
+        T get(int index);
         void removeLast();
         void removeFirst();
         void remove(int index);
@@ -60,37 +60,37 @@ bool LinkedList<T>::isEmpty()
 }
 
 template <typename T>
-int LinkedList<T>::size()
+int LinkedList<T>::getSize()
 {
     return this->size;
 }
 
 template <typename T>
-void LinkedList<T>::addLast(T * item)
+void LinkedList<T>::addLast(T item)
 {
     throw "Not implemented yet!";
 }
 
 template <typename T>
-void LinkedList<T>::addFirst(T * item)
+void LinkedList<T>::addFirst(T item)
 {
     throw "Not implemented yet!";
 }
 
 template <typename T>
-T * LinkedList<T>::getFirst()
+T LinkedList<T>::getFirst()
 {
     throw "Not implemented yet!";
 }
 
 template <typename T>
-T * LinkedList<T>::getLast()
+T LinkedList<T>::getLast()
 {
     throw "Not implemented yet!";
 }
 
 template <typename T>
-T * LinkedList<T>::get(int index)
+T LinkedList<T>::get(int index)
 {
     throw "Not implemented yet!";
 }
