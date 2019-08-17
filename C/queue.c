@@ -29,6 +29,22 @@ Queue * create_queue(void)
     return queue_ptr;
 }
 
+void destroy_node(Node * node)
+{
+    free(node->data);
+}
+
+void destroy_queue(Queue * queue)
+{
+    Node * current = queue->front;
+    while (current->next != NULL) {
+        Node * temp = current;
+        current = current->next;
+        destroy_node(temp);
+        free(temp);
+    }
+}
+
 bool queue_is_empty(Queue * queue)
 {
     return queue->size == 0;
@@ -52,10 +68,12 @@ void * queue_dequeue(Queue * queue)
     if (queue_is_empty(queue)) {
         return NULL;
     } else {
-        void * res = queue->front->data;
+        Node * res_node = queue->front;
+        void * res = res_node->data;
         queue->front = queue->front->next;
         queue->back = queue->front == NULL ? NULL : queue->back;
         queue->size--;
+        free(res_node);
         return res;
     }
 }
@@ -75,4 +93,8 @@ int main(void)
     while (!queue_is_empty(q)) {
         printf("%c\n", *((char *) queue_dequeue(q)));
     }
+
+    destroy_queue(q);
+
+    return 0;
 }

@@ -28,6 +28,22 @@ Stack * create_stack(void)
     return stack_ptr;
 }
 
+void destroy_node(Node * node)
+{
+    free(node->value);
+}
+
+void destroy_stack(Stack * stack)
+{
+    Node * current = stack->top;
+    while (current->under != NULL) {
+        Node * temp = current;
+        current = current->under;
+        destroy_node(temp);
+        free(temp);
+    }
+}
+
 bool stack_is_empty(Stack * stack)
 {
     return stack->size == 0;
@@ -60,9 +76,12 @@ void * stack_pop(Stack * stack)
     if (stack_is_empty(stack)) {
         return NULL;
     } else {
+        Node * top_node = stack->top;
         void * val = stack_peek(stack);
         stack->top = stack->top->under;
         stack->size--;
+        destroy_node(top_node);
+        free(top_node);
         return val;
     }
 }
@@ -83,6 +102,8 @@ int main(void)
     while (!stack_is_empty(s)) {
         printf("%c\n", *((char *) stack_pop(s)));
     }
+
+    destroy_stack(s);
 
     return 0;
 }

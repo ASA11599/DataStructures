@@ -1,38 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+typedef struct {
     void * data;
-    struct Node * next;
-};
+    Node * next;
+} Node;
 
-struct Linked_list {
+typedef struct {
     int size;
-    struct Node * head;
-};
+    Node * head;
+} Linked_list;
 
-struct Node * create_node(void * data)
+Node * create_node(void * data)
 {
-    struct Node * n = (struct Node *) malloc(sizeof(struct Node));
+    Node * n = (Node *) malloc(sizeof(Node));
     n->data = data;
+    n->next = NULL;
     return n;
 }
 
-struct Linked_list * create_linked_list(void)
+Linked_list * create_linked_list(void)
 {
-    struct Linked_list * ll = (struct Linked_list *) malloc(sizeof(struct Linked_list));
+    Linked_list * ll = (Linked_list *) malloc(sizeof(Linked_list));
     ll->size = 0;
     return ll;
 }
 
-void ll_append(struct Linked_list * ll, void * item)
+void destroy_node(Node * node)
+{
+    free(node->data);
+}
+
+void destroy_ll(Linked_list * ll)
+{
+    Node * current = ll->head;
+    while (current->next != NULL) {
+        Node * temp = current;
+        current = current->next;
+        destroy_node(temp);
+        free(temp);
+    }
+}
+
+void ll_append(Linked_list * ll, void * item)
 {
     if (ll->head == NULL) {
         ll->head = create_node(item);
         ll->size++;
         return;
     }
-    struct Node * current = ll->head;
+    Node * current = ll->head;
     while (current->next != NULL) {
         current = current->next;
     }
@@ -40,13 +57,13 @@ void ll_append(struct Linked_list * ll, void * item)
     ll->size++;
 }
 
-void * ll_get(struct Linked_list * ll, int index)
+void * ll_get(Linked_list * ll, int index)
 {
     if (ll->size <= index) {
         void * null_ptr;
         return null_ptr;
     }
-    struct Node * current = ll->head;
+    Node * current = ll->head;
     for (int i = 0 ; i < index ; i++) {
         current = current->next;
     }
@@ -59,7 +76,7 @@ int main(void) {
     char b = 'b';
     char c = 'c';
 
-    struct Linked_list * ll = create_linked_list();
+    Linked_list * ll = create_linked_list();
 
     ll_append(ll, (void *) &a);
     ll_append(ll, (void *) &b);
