@@ -1,30 +1,49 @@
-namespace LinkedList
+namespace ADT
 {
     template <typename T>
     class LinkedList
     {
 
         private:
-            // Nested class for nodes
+            /**
+             * Nested class for Nodes
+            */
             template <typename E>
             class Node
             {
                 public:
-                    E value;
+                    // using a pointer for easier memory management
+                    E * value;
                     Node<E> * prev;
                     Node<E> * next;
-                    // Constructor
-                    Node(const E value) {
+                    /**
+                     * Constructor:
+                     * creates a node
+                    */
+                    Node(const E * value)
+                    {
                         this->value = value;
                         this->prev = nullptr;
                         this->next = nullptr;
                     }
-                    // Constructor for the dummy node
-                    // ONLY USE TO CREATE DUMMY NODE
-                    Node() {
+                    /** Constructor for the dummy node:
+                    * ONLY USE TO CREATE DUMMY NODE
+                    */
+                    Node()
+                    {
                         this->value = nullptr;
                         this->prev = this;
                         this->next = this;
+                    }
+                    /**
+                     * Destructor:
+                     * destroys the Node and its value but does not touch prev and next
+                    */
+                    ~Node()
+                    {
+                        // we can do this because this->value will always be a pointer
+                        delete this->value;
+                        // we do NOT want to delete prev and next as they will be used by the list
                     }
             };
 
@@ -34,12 +53,27 @@ namespace LinkedList
 
         public:
             // Constructor
-            LinkedList() {
+            LinkedList()
+            {
                 this->size = 0;
                 this->dummy = new Node<T>();
             }
 
+            // Destructor
+            ~LinkedList()
+            {
+                Node<T> * toDelete = this->dummy->next;
+                Node<T> * cursor = toDelete;
+                while (toDelete != this->dummy) {
+                    cursor = toDelete->next;
+                    delete toDelete;
+                    toDelete = cursor;
+                }
+                delete this->dummy;
+            }
+
             // Instance methods
+
             bool isEmpty();
             int getSize();
             void addLast(T item);
@@ -51,7 +85,6 @@ namespace LinkedList
             void removeLast();
             void removeFirst();
             void remove(int index);
-
 
     };
 
