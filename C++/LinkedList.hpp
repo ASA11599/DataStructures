@@ -218,18 +218,43 @@ namespace ADT
     template <typename T>
     void LinkedList<T>::removeFirst()
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (this->getSize() == 0) throw "List is empty!";
+        else {
+            this->dummy->next = this->dummy->next->next;
+            delete this->dummy->next->prev;
+            this->dummy->next->prev = this->dummy;
+            this->size--;
+        }
     }
 
     template <typename T>
     void LinkedList<T>::removeLast()
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (this->getSize() == 0) throw "List is empty!";
+        else {
+            this->dummy->prev = this->dummy->prev->prev;
+            delete this->dummy->prev->next;
+            this->dummy->prev->next = this->dummy;
+            this->size--;
+        }
     }
 
     template <typename T>
     void LinkedList<T>::remove(int index)
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (index >= this->getSize()) throw "Out of bounds!";
+        else {
+            Node<T> * current = this->dummy;
+            for (int i = 0 ; i < index ; i++) {
+                current = current->next;
+            }
+            current->next = current->next->next;
+            delete current->next->prev;
+            current->next->prev = current;
+            this->size--;
+        }
     }
 }
