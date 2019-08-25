@@ -1,4 +1,4 @@
-namespace Queue
+namespace ADT
 {
     template <typename T>
     class LinkedQueue
