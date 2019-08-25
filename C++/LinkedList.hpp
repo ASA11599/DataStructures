@@ -18,21 +18,37 @@ namespace ADT
                     Node<E> * next;
                     /**
                      * Constructor:
-                     * creates a node
+                     * creates a node from a value pointer
                     */
                     Node(const E * value)
                     {
-                        this->value = value;
-                        this->prev = nullptr;
-                        this->next = nullptr;
+                        Node(value, nullptr, nullptr);
                     }
                     /**
                      * Constructor:
-                     * creates a node
+                     * creates a node from a value
+                    */
+                    Node(const E value)
+                    {
+                        Node(value, nullptr, nullptr);
+                    }
+                    /**
+                     * Constructor:
+                     * creates a node from a value pointer
                     */
                     Node(const E * value, Node<T> * prev, Node<T> * next)
                     {
                         this->value = value;
+                        this->prev = prev;
+                        this->next = next;
+                    }
+                    /**
+                     * Constructor:
+                     * creates a node form a value
+                    */
+                    Node(const E value, Node<T> * prev, Node<T> * next)
+                    {
+                        this->value = new E(value);
                         this->prev = prev;
                         this->next = next;
                     }
@@ -86,12 +102,15 @@ namespace ADT
 
             bool isEmpty();
             int getSize();
-            void addLast(T * item);
-            void addFirst(T * item);
-            void add(T * item, int index);
-            T * getLast();
-            T * getFirst();
-            T * get(int index);
+            void addLast(T * itemptr);
+            void addLast(T itemptr);
+            void addFirst(T * itemptr);
+            void addFirst(T item);
+            void add(T * itemptr, int index);
+            void add(T item, int index);
+            T getLast();
+            T getFirst();
+            T get(int index);
             void removeLast();
             void removeFirst();
             void remove(int index);
@@ -111,37 +130,71 @@ namespace ADT
     }
 
     template <typename T>
-    void LinkedList<T>::addLast(T * item)
+    void LinkedList<T>::addLast(T * itemptr)
+    {
+        Node<T> * oldLast = this->dummy->prev;
+        this->dummy->prev = new Node<T>(itemptr, oldLast, this->dummy);
+        oldLast->next = this->dummy->prev;
+        this->size++;
+    }
+
+    template <typename T>
+    void LinkedList<T>::addLast(T item)
+    {
+        addLast(new T(item));
+    }
+
+    template <typename T>
+    void LinkedList<T>::addFirst(T * itemptr)
+    {
+        Node<T> * oldFirst = this->dummy->next;
+        this->dummy->next = new Node<T>(itemptr, this->dummy, currentFirst);
+        oldFirst->prev = this->dummy->next;
+        this->size++;
+    }
+
+    template <typename T>
+    void LinkedList<T>::addFirst(T item)
+    {
+        addFirst(new T(item));
+    }
+
+    template <typename T>
+    void LinkedList<T>::add(T * itemptr, int index)
+    {
+        // TODO: throw an actual exception
+        if (index >= this->getSize()) throw "Out of bounds!";
+        else {
+            Node<T> current = this->dummy;
+            for (int i = 0 ; i < index ; i++) {
+                current = current->next;
+            }
+            current->next = new Node<T>(itempr, current, current->next);
+            current->next->next->prev = current->next;
+            this->size++;
+        }
+    }
+
+    template <typename T>
+    void add(T item, int index)
+    {
+        add(new T(item), index);
+    }
+
+    template <typename T>
+    T LinkedList<T>::getFirst()
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    void LinkedList<T>::addFirst(T * item)
+    T LinkedList<T>::getLast()
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    void LinkedList<T>::add(T * item, int index)
-    {
-        throw "Not implemented yet!";
-    }
-
-    template <typename T>
-    T * LinkedList<T>::getFirst()
-    {
-        throw "Not implemented yet!";
-    }
-
-    template <typename T>
-    T * LinkedList<T>::getLast()
-    {
-        throw "Not implemented yet!";
-    }
-
-    template <typename T>
-    T * LinkedList<T>::get(int index)
+    T LinkedList<T>::get(int index)
     {
         throw "Not implemented yet!";
     }
