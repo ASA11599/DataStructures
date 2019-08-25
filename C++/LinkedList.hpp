@@ -86,12 +86,12 @@ namespace ADT
 
             bool isEmpty();
             int getSize();
-            void addLast(T item);
-            void addFirst(T item);
-            void add(T* item, int index);
-            T getLast();
-            T getFirst();
-            T get(int index);
+            void addLast(T * item);
+            void addFirst(T * item);
+            void add(T * item, int index);
+            T * getLast();
+            T * getFirst();
+            T * get(int index);
             void removeLast();
             void removeFirst();
             void remove(int index);
@@ -111,31 +111,37 @@ namespace ADT
     }
 
     template <typename T>
-    void LinkedList<T>::addLast(T item)
+    void LinkedList<T>::addLast(T * item)
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    void LinkedList<T>::addFirst(T item)
+    void LinkedList<T>::addFirst(T * item)
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    T LinkedList<T>::getFirst()
+    void LinkedList<T>::add(T * item, int index)
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    T LinkedList<T>::getLast()
+    T * LinkedList<T>::getFirst()
     {
         throw "Not implemented yet!";
     }
 
     template <typename T>
-    T LinkedList<T>::get(int index)
+    T * LinkedList<T>::getLast()
+    {
+        throw "Not implemented yet!";
+    }
+
+    template <typename T>
+    T * LinkedList<T>::get(int index)
     {
         throw "Not implemented yet!";
     }
