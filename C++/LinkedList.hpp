@@ -20,7 +20,7 @@ namespace ADT
                      * Constructor:
                      * creates a node from a value pointer
                     */
-                    Node(const E * value)
+                    Node(E * value)
                     {
                         Node(value, nullptr, nullptr);
                     }
@@ -28,7 +28,7 @@ namespace ADT
                      * Constructor:
                      * creates a node from a value
                     */
-                    Node(const E value)
+                    Node(E value)
                     {
                         Node(value, nullptr, nullptr);
                     }
@@ -36,7 +36,7 @@ namespace ADT
                      * Constructor:
                      * creates a node from a value pointer
                     */
-                    Node(const E * value, Node<T> * prev, Node<T> * next)
+                    Node(E * value, Node<T> * prev, Node<T> * next)
                     {
                         this->value = value;
                         this->prev = prev;
@@ -46,7 +46,7 @@ namespace ADT
                      * Constructor:
                      * creates a node form a value
                     */
-                    Node(const E value, Node<T> * prev, Node<T> * next)
+                    Node(E value, Node<T> * prev, Node<T> * next)
                     {
                         this->value = new E(value);
                         this->prev = prev;
@@ -148,7 +148,7 @@ namespace ADT
     void LinkedList<T>::addFirst(T * itemptr)
     {
         Node<T> * oldFirst = this->dummy->next;
-        this->dummy->next = new Node<T>(itemptr, this->dummy, currentFirst);
+        this->dummy->next = new Node<T>(itemptr, this->dummy, oldFirst);
         oldFirst->prev = this->dummy->next;
         this->size++;
     }
@@ -169,7 +169,7 @@ namespace ADT
             for (int i = 0 ; i < index ; i++) {
                 current = current->next;
             }
-            current->next = new Node<T>(itempr, current, current->next);
+            current->next = new Node<T>(itemptr, current, current->next);
             current->next->next->prev = current->next;
             this->size++;
         }
