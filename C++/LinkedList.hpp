@@ -165,7 +165,7 @@ namespace ADT
         // TODO: throw an actual exception
         if (index >= this->getSize()) throw "Out of bounds!";
         else {
-            Node<T> current = this->dummy;
+            Node<T> * current = this->dummy;
             for (int i = 0 ; i < index ; i++) {
                 current = current->next;
             }
@@ -176,7 +176,7 @@ namespace ADT
     }
 
     template <typename T>
-    void add(T item, int index)
+    void LinkedList<T>::add(T item, int index)
     {
         add(new T(item), index);
     }
@@ -184,19 +184,35 @@ namespace ADT
     template <typename T>
     T LinkedList<T>::getFirst()
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (this->getSize() == 0) throw "List is empty!";
+        else {
+            return *(this->dummy->next->value);
+        }
     }
 
     template <typename T>
     T LinkedList<T>::getLast()
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (this->getSize() == 0) throw "List is empty!";
+        else {
+            return *(this->dummy->prev->value);
+        }
     }
 
     template <typename T>
     T LinkedList<T>::get(int index)
     {
-        throw "Not implemented yet!";
+        // TODO: throw an actual exception
+        if (index >= this->getSize()) throw "Out of bounds!";
+        else {
+            Node<T> * current = this->dummy->next;
+            for (int i = 0 ; i < index ; i++) {
+                current = current->next;
+            }
+            return *(current->value);
+        }
     }
 
     template <typename T>
