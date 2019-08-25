@@ -26,6 +26,16 @@ namespace ADT
                         this->prev = nullptr;
                         this->next = nullptr;
                     }
+                    /**
+                     * Constructor:
+                     * creates a node
+                    */
+                    Node(const E * value, Node<T> * prev, Node<T> * next)
+                    {
+                        this->value = value;
+                        this->prev = prev;
+                        this->next = next;
+                    }
                     /** Constructor for the dummy node:
                     * ONLY USE TO CREATE DUMMY NODE
                     */
